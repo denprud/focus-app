@@ -1,7 +1,7 @@
-#FOCUS Web Extension / Addon
+# FOCUS Web Extension / Addon
 
-##LINKS
+## LINKS
 The link can be found [here](https://chromewebstore.google.com/detail/focus-curb-your-procrasti/dinffmdffoijlfoehmemdkahchkmlffb)
 
-##Edge Store Link
+## Edge Store Link
 The link can be found [here](https://chromewebstore.google.com/detail/focus-curb-your-procrasti/dinffmdffoijlfoehmemdkahchkmlffb)

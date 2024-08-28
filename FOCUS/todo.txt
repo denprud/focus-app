@@ -1,5 +1,0 @@
-add refresh to added and deleted tabs
-
-add option if you want your current tab to prohibit change or not
-
-add pomodoro timer

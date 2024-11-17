@@ -1,78 +1,11 @@
-/* style.css */
-
 body {
-	font-family: Arial, sans-serif;
-	background-color: #ffffff;
-	margin: 0;
-	padding: 0;
+	min-width:300px;
+}
+
+.heading{
 	display: flex;
-	justify-content: center;
-	align-items: center;
-	
-  }
+}
 
-  hr{
-	border: 1px solid rgba(0, 0, 0, 0.3);
-	
-  }
-  
-  p {
-	color: #333;
-	font-size: 1.2em;
-  }
-
-  .helpLink{
-	position: absolute;
-	left: 40%;
-	font-size: small;
-	
-  }
-  
-  div {
-	background-color: #ffffff;
-	padding: 20px;
-	/* border-radius: 5px;
-	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
-	
-  }
-
-  .tabDiv{
-	border-right: 1px solid rgba(0, 0, 0, 0.3);
-	position: relative;
-  }
-
-  .buttonDiv{
-	position: relative;
-  }
-
-  .listDiv{
-	display: flex;
-  }
-  
-  .cancelButton{
-	color: red;
-	background-color: rgb(255, 255, 255);
-	border: none;
-  }
-  
-  .setButton {
-	background-color: #4CAF50; /* Green */
-	border: none;
-	color: white;
-	padding: 15px 32px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin: 4px 2px;
-	cursor: pointer;
-	transition-duration: 0.4s;
-  }
-  
-  .setButton:hover {
-	background-color: white; 
-	color: black; 
-	border: 2px solid #4CAF50;
-  }
-
-  
+#current_tabs_text{
+	justify-self: center;
+}

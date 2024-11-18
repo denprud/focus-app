@@ -1,92 +1,51 @@
-//Background script 
-
-let lastActivatedStatus = false
-let activatedStatus = false
-let urlStemArray = []
-let savedTabArray = []
-
-chrome.runtime.onStartup.addListener(createOffscreen);
-self.onmessage = e => {}; // keepAlive
-createOffscreen();
-
-//Gets the selected tab information when sent from script.js
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-  // savedTabId = request.savedTabId;
-  
-  activatedStatus = request.focusActivated
-  urlStemArray = request.urlStemArray
-  savedTabArray = request.savedTabArray
-
-});
-
-
-//Listener that detects that the tab changes when the tab switches
-chrome.tabs.onActivated.addListener(function(activeInfo) {
-  chrome.action.enable(activeInfo.tabId, ()=>{
-    console.log("Action")
-  })
-  if (activatedStatus !== false && (!savedTabArray.includes(activeInfo.tabId))) {
-    // chrome.tabs.sendMessage(activeInfo.tabId, {message: "change_dom"});
-    chrome.scripting.executeScript({
-      target: {tabId: activeInfo.tabId},
-      func: changeDOM
-    });
+// Function to get the base URL (origin) of a given URL
+function getBaseUrl(url) {
+  try {
+    const urlObj = new URL(url);
+    return urlObj.origin;
+  } catch (e) {
+    console.error('Invalid URL:', url);
+    return null;
   }
-});
+}
 
-//Listener that detects that the user opens a new tab thats not valid
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-  chrome.action.enable()
-  if (changeInfo.status === 'complete' && activatedStatus !== false && (!savedTabArray.includes(tabId))) {
-    // chrome.tabs.sendMessage(tabId, {message: "change_dom"});
-    chrome.scripting.executeScript({
-      target: {tabId: tabId},
-      func: changeDOM
-    });
-  }
-});
-
-//Listener that detects that active tab diverges to a completely new url
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-  chrome.action.enable()
-  if (changeInfo.status === 'complete' && activatedStatus !== false && savedTabArray.includes(tabId) && (!urlStemArray.includes(tab.url.split("/")[2]))) {
-    // chrome.tabs.sendMessage(tabId, {message: "change_dom"});
-    chrome.scripting.executeScript({
-      target: {tabId: tabId},
-      func: critiqueAndChangeDOM
-    });
-  }
-});
-
-chrome.tabs.onRemoved.addListener((tabId)=>{
-  if(savedTabArray.includes(tabId)){
-    urlStemArray.splice(savedTabArray.indexOf(tabId), 1);
-    savedTabArray.splice(savedTabArray.indexOf(tabId), 1);
-   
-    chrome.storage.local.set({savedTabArray: savedTabArray});
-    chrome.storage.local.set({urlStemArray: urlStemArray});
-
-    if(savedTabArray.length == 0){
-      console.log("test")
-      activatedStatus = false
+// Function to check if the new tab URL is in the tab list
+function checkTabUrl(tabId) {
+  chrome.tabs.get(tabId, function(tab) {
+    if (chrome.runtime.lastError) {
+      console.error(chrome.runtime.lastError);
+      return;
     }
+
+    const newTabUrl = tab.url;
+    const newTabBaseUrl = getBaseUrl(newTabUrl);
+
+    // Retrieve the saved tab list and focus session state from Chrome storage
+    chrome.storage.local.get(['tabList', 'focusSession'], function(data) {
+      const tabList = data.tabList || [];
+      const focusSession = data.focusSession || false;
+
+      // Check if the new tab base URL is in the tab list and if the focus session is active
+      if (focusSession && !tabList.includes(newTabBaseUrl)) {
+        chrome.scripting.executeScript({
+          target: { tabId: tabId },
+          func: () => {
+            document.body.innerHTML = '<h1 style="color: red; text-align: center; margin-top: 20%;">GET BACK TO WORK</h1>';
+          }
+        });
+      }
+    });
+  });
+}
+
+// Listen for tab activation (triggers when user moves to new tab)
+chrome.tabs.onActivated.addListener(function(activeInfo) {
+  checkTabUrl(activeInfo.tabId);
+});
+
+// Listen for tab updates (triggers when user refreshes or change current tab)
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+  if (changeInfo.status === 'loading' || changeInfo.url) {
+    checkTabUrl(tabId);
   }
-})
-
-async function createOffscreen() {
-  await chrome.offscreen.createDocument({
-    url: 'offscreen.html',
-    reasons: ['BLOBS'],
-    justification: 'keep service worker running',
-  }).catch(() => {});
-}
-
-//Scripting Functions
-function changeDOM() {
-  document.body.innerHTML = "<h1>GET BACK TO WORK</h1>";
-}
-
-function critiqueAndChangeDOM() {
-  document.body.innerHTML = "<h1>DON'T YOU EVEN TRY IT</h1>";
-}
-
+});

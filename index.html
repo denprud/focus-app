@@ -4,11 +4,20 @@
 		<link rel="stylesheet" href="style.css"/>
 	</head>
 	<body>
+		<header class="heading">
+			<img src="img/focus-b&w.png" alt="Red Exclaimation Mark Logo">
+			<h1 id="title">Focus</h1>
+		</header>
+		<hr>
 		<div class="tabDiv">
-			<h1>FOCUS</h1>
-			<hr>
+			<h2 id="current_tabs_text">Current Tabs</h2>
+			
+			<div id="no-tabs-message" style="display: none; border: 1px solid black; padding: 10px; text-align: center;">
+				<h2>No Tabs Added</h2>
+				<h2>Click the ‘Add Tab’ Button to get started.</h2>
+			</div>
+
 			<div>
-				<p>Active Tabs:</p>
 				<ul id="tabList">
 				</ul>
 			</div>
@@ -16,6 +25,7 @@
 		<div class="buttonDiv">
 			<button class="setButton"  id="button-test">Add Tab</button>
 			<button class="setButton"  id="reset-test">Reset</button>
+			<button class="setButton"  id="start-test">Start Session</button>
 			<!-- <p class="helpLink">help</p> -->
 		</div>
 		<script src="script.js"></script>

@@ -1,78 +1,99 @@
-/* style.css */
+html{
+	height: auto;
+}
 
 body {
-	font-family: Arial, sans-serif;
-	background-color: #ffffff;
-	margin: 0;
-	padding: 0;
+	min-width:300px;
+	min-height: 300px;
+	background-color: #FAFAF7;
+	font-family: 'Patrick Hand SC', cursive;
+}
+
+
+
+hr{
+	border: solid;
+	border-radius: 10px;
+	border-color: #808080;
+	border-width: .5px;
+	
+}
+
+.heading{
 	display: flex;
+}
+
+h1{
+	font-size: 10vw;
+}
+
+h2{
+	font-size: 5vw;
+}
+
+.heading > img{
+	max-height: 48px;
+	height: auto;
+}
+
+
+#title{
+	margin: 0 22%;
+	align-self: center;
+	color: #000000;
+	font-weight: bold;
+}
+
+
+
+#current_tabs_text{
+	justify-self: center;
+}
+
+/* List */
+
+ul{	
+	display:flex;
+	flex-direction: column;
 	justify-content: center;
-	align-items: center;
-	
-  }
-
-  hr{
-	border: 1px solid rgba(0, 0, 0, 0.3);
-	
-  }
   
-  p {
-	color: #333;
-	font-size: 1.2em;
-  }
+}
 
-  .helpLink{
-	position: absolute;
-	left: 40%;
-	font-size: small;
+ul li{
+	display: list-item;
+	padding: 5px 10px;
+	margin: 0 3px;
+}
+
+/* Buttons */
+.delete-button {
+	border: none;
+	background: transparent;
 	
-  }
-  
-  div {
-	background-color: #ffffff;
-	padding: 20px;
-	/* border-radius: 5px;
-	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
-	
-  }
+	cursor: pointer; /* Optional: Change the cursor to a pointer */
+	font-size: 1em; /* Optional: Adjust the font size */
+	margin-left: 10px; /* Keep the margin-left */
+}
 
-  .tabDiv{
-	border-right: 1px solid rgba(0, 0, 0, 0.3);
+button {
+	font-family: inherit;
+	border-radius: 7px;
+	padding: 5px;
+}
+
+.buttonDiv {
 	position: relative;
-  }
-
-  .buttonDiv{
-	position: relative;
-  }
-
-  .listDiv{
+	bottom: 10px; /* Adjust as needed */
+	left: 7%;
+	right: 10%;
 	display: flex;
-  }
-  
-  .cancelButton{
-	color: red;
-	background-color: rgb(255, 255, 255);
-	border: none;
-  }
-  
-  .setButton {
-	background-color: #4CAF50; /* Green */
-	border: none;
-	color: white;
-	padding: 15px 32px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin: 4px 2px;
-	cursor: pointer;
-	transition-duration: 0.4s;
-  }
-  
-  .setButton:hover {
-	background-color: white; 
-	color: black; 
-	border: 2px solid #4CAF50;
-  }
+	justify-content: space-evenly;
+	width: 85%;
+	margin-top: 20px; /* Add top margin to prevent collision */
+	padding: 10px; /* Add padding for better spacing */
+	
+}
 
-  
+#start-test{
+	background-color: #D2D2D2;
+}

@@ -1,6 +1,6 @@
 ## Link
 
-[https://chromewebstore.google.com/detail/focus-curb-your-procrasti/dinffmdffoijlfoehmemdkahchkmlffb](FOCUS link)
+[FOCUS link](https://chromewebstore.google.com/detail/focus-curb-your-procrasti/dinffmdffoijlfoehmemdkahchkmlffb)
 
 ## Installation
 

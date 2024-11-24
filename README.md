@@ -1,3 +1,6 @@
+## Link
+
+[https://chromewebstore.google.com/detail/focus-curb-your-procrasti/dinffmdffoijlfoehmemdkahchkmlffb](FOCUS link)
 
 ## Installation
 
@@ -47,4 +50,4 @@ Feel free to submit issues or pull requests if you have any improvements or bug 
 
 ## Contact
 
-For any questions or suggestions, please contact [your-email@example.com].
+For any questions or suggestions, please contact [capablecontents@gmail.com].

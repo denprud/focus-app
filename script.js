@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const resetButton = document.getElementById('reset-test');
   const tabList = document.getElementById('tabList');
   const noTabsMessage = document.getElementById('no-tabs-message');
+  const themeStylesheet = document.getElementById('theme-stylesheet');
+  const logoImage = document.getElementById('logo-image');
 
   // Function to save the current tab list to Chrome storage
   function saveList() {
@@ -81,6 +83,16 @@ document.addEventListener('DOMContentLoaded', function() {
     toggleNoTabsMessage(); // Toggle the message visibility
   });
 
+  // Update the theme of the webpage if necessary
+  chrome.storage.local.get(['theme', 'themeImage'], function(data) {
+    if (data.theme) {
+      themeStylesheet.href = data.theme;
+    }
+    if (data.themeImage) {
+      logoImage.src = data.themeImage;
+    }
+  });
+
   // Add a new tab to the list of active tabs in the focus session
   addButton.addEventListener('click', function() {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
@@ -117,4 +129,9 @@ document.addEventListener('DOMContentLoaded', function() {
     startButton.textContent = focusSession ? 'End Session' : 'Start Session';
     toggleNoTabsMessage(); // Toggle the message visibility
   });
+
+  document.getElementById('settings-button').addEventListener('click', function() {
+    window.location.href = 'settings.html';
+  });
+  
 });

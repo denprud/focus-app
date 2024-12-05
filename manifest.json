@@ -25,5 +25,10 @@
    ],
    "short_name": "FOCUS",
    "version": "1.0.1",
-   "web_accessible_resources": [  ]
+   "web_accessible_resources": [  
+      {
+         "resources": ["settings.html"],
+         "matches": ["<all_urls>"]
+      }
+   ]
 }

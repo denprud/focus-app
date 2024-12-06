@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
   
     // Dictionary to map themes to images
     const themeImages = {
-    'style.css': 'img/focus-b&w.png',
-    'style2.css': 'img/alert_128.png',
+    'css-files/sketch.css': 'img/focus-b&w.png',
+    'css-files/ariel.css': 'img/alert_128.png',
     };
 
 

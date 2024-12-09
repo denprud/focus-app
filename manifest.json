@@ -19,7 +19,7 @@
    },
    "manifest_version": 3,
    "name": "FOCUS - Curb your Procrastination",
-   "permissions": [ "scripting", "tabs", "activeTab", "storage", "tabGroups", "offscreen" ],
+   "permissions": [ "scripting", "tabs", "activeTab", "storage", "tabGroups", "offscreen", "notifications"],
    "host_permissions": [
       "<all_urls>"
    ],

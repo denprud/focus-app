@@ -4,16 +4,23 @@
 		<link rel="stylesheet" href="css-files/sketch.css" id="theme-stylesheet"/>
 	</head>
 	<body>
+		<nav class="navTabs">
+			<ul class="navList">
+				<li><a href="index.html">Focus</a></li>
+				<li><a href="pomodoro.html">Pomodoro Timer</a></li>
+				<li><a href="settings.html">Settings</a></li>
+			</ul>
+		</nav>
 		<header class="heading">
 			<img id="logo-image" src="img/focus-b&w.png" alt="Black And White Exclamation Mark Logo">
 			<h1 id="title">Focus</h1>
-			<button id="settings-button">Settings</button>
+			<!-- <button id="settings-button">Settings</button> -->
 		</header>
 		<hr>
 		<div class="tabDiv">
 			<h2 id="current_tabs_text">Current Tabs</h2>
 			
-			<div id="no-tabs-message" style="display: none; border: 1px solid black; padding: 10px; text-align: center;">
+			<div id="no-tabs-message">
 				<h2>No Tabs Added</h2>
 				<h2>Click the ‘Add Tab’ Button to get started.</h2>
 			</div>

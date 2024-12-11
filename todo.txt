@@ -1,6 +1,7 @@
-pomodod 5 min break timer once pomodoro timer is finished
+blocked list setting
+
+help website page
 
 when the pomodoro timer is active, the focus session state shoudl also be active, 
 thus allowing the start session button to display 'end session'
 
-potentially find a way to clear update interval once the full time expires

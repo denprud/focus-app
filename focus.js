@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const noTabsMessage = document.getElementById('no-tabs-message');
   const themeStylesheet = document.getElementById('theme-stylesheet');
   const logoImage = document.getElementById('logo-image');
+  const link = document.getElementById('focus');
 
   // Function to save the current tab list to Chrome storage
   function saveList() {
@@ -165,6 +166,12 @@ document.addEventListener('DOMContentLoaded', function() {
     chrome.storage.local.set({ resetFocusSession: true });
     console.log('Resetting focus session');
   });
+
+  function addLinkStyling(){
+    link.classList.add('active');
+  }
+
+  addLinkStyling();
 
   
 });

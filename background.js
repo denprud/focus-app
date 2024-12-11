@@ -1,7 +1,7 @@
 let timerInterval;
-let timeLeft = 1 * 10; // 25 minutes in seconds
+let timeLeft = 25 * 60; // 25 minutes in seconds
 let breakInterval;
-let breakTimeLeft = 1 * 10; // 5 minutes in seconds
+let breakTimeLeft = 5 * 60; // 5 minutes in seconds
 
 // Function to start the timer
 function startTimer() {
@@ -47,8 +47,8 @@ function startBreakTimer() {
         });
         // Reset break time for the next session
         breakInterval = null;
-        breakTimeLeft = 1 * 10;
-        timeLeft = 1 * 10
+        breakTimeLeft = 5 * 60;
+        timeLeft = 25 * 60
         chrome.storage.local.set({breakTimeStatus: false });
       }
     }, 1000);
@@ -60,7 +60,7 @@ function stopTimer() {
   clearInterval(timerInterval);
   timerInterval = null; // Clear the interval ID
   breakInterval = null; // Clear the interval ID
-  timeLeft = 1 * 10; // Reset to 25 minutes
+  timeLeft = 25 * 60; // Reset to 25 minutes
   chrome.storage.local.set({ pomodoroActive: false, timeLeft: timeLeft, breakTimeStatus: false });
 }
 

@@ -139,7 +139,6 @@ button {
 	color: #000000;
 }
 
-/* Staged Changes  */
 
 #pomodoro-timer{
 	width: fit-content;
@@ -163,3 +162,28 @@ button {
 	margin: auto;
 }
 
+/* Staged Changes  */
+
+.nav-link {
+	position: relative;
+	overflow: hidden; /* Ensure no overflow issues */
+}
+  
+.nav-link::after {
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 2px;
+	display: block;
+	margin-top: 5px;
+	left: 0;
+	background: #fc1c20;
+	transition: width 0.4s ease;
+	-webkit-transition: width 0.4s ease;
+}
+
+.nav-link.active::after {
+	width: 100%;
+	left: 0;
+	background: #fc1c20;
+}

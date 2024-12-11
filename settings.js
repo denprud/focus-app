@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const actionSelect = document.getElementById('action-select');
     const themeStylesheet = document.getElementById('theme-stylesheet');
     const backButton = document.getElementById('back-button');
+    const link = document.getElementById('settings');
+
   
     // Dictionary to map themes to images
     const themeImages = {
@@ -42,9 +44,12 @@ document.addEventListener('DOMContentLoaded', function() {
       chrome.storage.local.set({ action: selectedAction });
     });
   
-    // Navigate back to the main page
-    backButton.addEventListener('click', function() {
-      window.location.href = 'index.html'; 
-    });
+
+    function addLinkStyling(){
+      link.classList.add('active');
+    }
+  
+    addLinkStyling();
+
   });
 

@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const breakTimestamp = document.getElementById('break-timestamp'); // Add an element for the break timer
     const themeStylesheet = document.getElementById('theme-stylesheet');
     const breakSign = document.getElementById('break-sign');
+    const link = document.getElementById('pomodoro');
     let updateInterval;
     let breakUpdateInterval;
 
@@ -63,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
       chrome.runtime.sendMessage({ action: 'stopTimer' }, function(response) {
         if (response.status === 'stopped') {
           clearInterval(updateInterval);
-          updateTimestamp(1 * 10); // Reset to 25 minutes
+          updateTimestamp(25 * 60); // Reset to 25 minutes
         }
       });
     });
@@ -85,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
         chrome.runtime.sendMessage({ action: 'stopTimer' }, function(response) {
           if (response && response.status === 'stopped') {
             clearInterval(updateInterval);
-            updateTimestamp(1 * 10);
+            updateTimestamp(25 * 60);
           }
         });
 
@@ -117,11 +118,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 clearInterval(updateInterval);
             }
 
-            breakSign.style.display = changes.breakTimeStatus ? 'block' : 'none';
+           
 
             console.log('Break time started');
             getBreakTimeLeft();
             startUpdatingBreakTimestamp();
+
+            breakSign.style.display = changes.breakTimeStatus.newValue ? 'block' : 'none';
         }
         else if (changes.breakTimeStatus && !changes.breakTimeStatus.newValue) {
             // Clear existing break interval
@@ -134,10 +137,12 @@ document.addEventListener('DOMContentLoaded', function() {
             timestamp.style.display = 'block'; // Show the Pomodoro timer 
             // updateTimestamp(1 * 10); // Reset to 25 minutes
 
-            breakSign.style.display = changes.breakTimeStatus ? 'block' : 'none';
+            
 
             // Ensure the timer starts updating again
             startUpdatingTimestamp();
+
+            breakSign.style.display = changes.breakTimeStatus.newValue ? 'block' : 'none';
         }
     });
 
@@ -151,4 +156,10 @@ document.addEventListener('DOMContentLoaded', function() {
     chrome.storage.local.get('breakTimeStatus', function(data) {
              breakSign.style.display = data.breakTimeStatus ? 'block' : 'none';
     });
+
+    function addLinkStyling(){
+      link.classList.add('active');
+    }
+
+    addLinkStyling();
 });

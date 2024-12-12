@@ -1,5 +1,3 @@
-blocked list setting
-
 help website page
 
 when the pomodoro timer is active, the focus session state shoudl also be active, 

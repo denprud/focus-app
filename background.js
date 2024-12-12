@@ -105,14 +105,15 @@ function checkTabUrl(tabId) {
     const newTabBaseUrl = getBaseUrl(newTabUrl);
 
     // Retrieve the saved tab list, focus session state, and action from Chrome storage
-    chrome.storage.local.get(['tabList', 'focusSession', 'action', 'pomodoroActive'], function(data) {
+    chrome.storage.local.get(['tabList', 'focusSession', 'action', 'pomodoroActive', "listSetting"], function(data) {
       const tabList = data.tabList || [];
       const focusSession = data.focusSession || false;
       const pomodoroActive = data.pomodoroActive || false;
       const action = data.action || 'change-dom';
+      const listSetting = data.listSetting || 'allow-list';
 
       // Check if the new tab base URL is in the tab list and if the focus session or Pomodoro timer is active
-      if ((focusSession || pomodoroActive) && !tabList.includes(newTabBaseUrl)) {
+      if ((focusSession || pomodoroActive) && ((listSetting === 'allow-list' && !tabList.includes(newTabBaseUrl)) || (listSetting === 'blocked-list' && tabList.includes(newTabBaseUrl)))) {
         if (action === 'change-dom') {
           chrome.scripting.executeScript({
             target: { tabId: tabId },

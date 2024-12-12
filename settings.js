@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     const themeSelect = document.getElementById('theme-select');
     const actionSelect = document.getElementById('action-select');
+    const listSelect = document.getElementById('list-select');
     const themeStylesheet = document.getElementById('theme-stylesheet');
-    const backButton = document.getElementById('back-button');
     const link = document.getElementById('settings');
 
   
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // Load the saved theme and action from storage
-  chrome.storage.local.get(['theme', 'themeImage', 'action'], function(data) {
+  chrome.storage.local.get(['theme', 'themeImage', 'action', 'listSetting'], function(data) {
     if (data.theme) {
       themeStylesheet.href = data.theme;
       themeSelect.value = data.theme;
@@ -24,6 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     if (data.action) {
       actionSelect.value = data.action;
+    }
+    if(data.listSetting){
+      listSelect.value = data.listSetting;
     }
   });
 
@@ -43,6 +46,13 @@ document.addEventListener('DOMContentLoaded', function() {
       const selectedAction = actionSelect.value;
       chrome.storage.local.set({ action: selectedAction });
     });
+
+    // Save the selected list when the user selects a new option
+    listSelect.addEventListener('change', function() {
+      const selectedList = listSelect.value;
+      chrome.storage.local.set({ listSetting: selectedList });
+    });
+  
   
 
     function addLinkStyling(){

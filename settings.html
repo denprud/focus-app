@@ -4,15 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Settings</title>
-  <link rel="stylesheet" href="style.css" id="theme-stylesheet">
+  <link rel="stylesheet" href="css-files/sketch.css" id="theme-stylesheet">
 </head>
 <body>
+  
+  <nav class="navTabs">
+    <ul class="navList">
+      <li><a href="focus.html" class="nav-link" id="index">Focus</a></li>
+      <li><a href="pomodoro.html" class="nav-link" id="pomodoro">Pomodoro Timer</a></li>
+      <li><a href="settings.html" class="nav-link" id="settings">Settings</a></li>
+    </ul>
+  </nav>
+
   <h1>Settings</h1>
   <p>Here you can configure your settings.</p>
   <label for="theme-select">Choose a theme:</label>
   <select id="theme-select">
-    <option value="style.css">Sketch Theme</option>
-    <option value="style2.css">Ariel Theme</option>
+    <option value="css-files/sketch.css">Sketch Theme</option>
+    <option value="css-files/ariel.css">Ariel Theme</option>
   </select>
   <br>
   <label for="action-select">Choose an action:</label>
@@ -20,7 +29,12 @@
     <option value="change-dom">Change DOM Content</option>
     <option value="show-alert">Show Alert</option>
   </select>
-  <button id="back-button">Back to Focus</button>
+  <label for="list-select">Choose a List Setting</label>
+  <select id="list-select">
+    <option value="allow-list">Allow List</option>
+    <option value="blocked-list">Blocked List</option>
+  </select>
+  
   <script src="settings.js"></script>
 </body>
 </html>

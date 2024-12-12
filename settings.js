@@ -1,18 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
     const themeSelect = document.getElementById('theme-select');
     const actionSelect = document.getElementById('action-select');
+    const listSelect = document.getElementById('list-select');
     const themeStylesheet = document.getElementById('theme-stylesheet');
-    const backButton = document.getElementById('back-button');
+    const link = document.getElementById('settings');
+
   
     // Dictionary to map themes to images
     const themeImages = {
-    'style.css': 'img/focus-b&w.png',
-    'style2.css': 'img/alert_128.png',
+    'css-files/sketch.css': 'img/focus-b&w.png',
+    'css-files/ariel.css': 'img/alert_128.png',
     };
 
 
     // Load the saved theme and action from storage
-  chrome.storage.local.get(['theme', 'themeImage', 'action'], function(data) {
+  chrome.storage.local.get(['theme', 'themeImage', 'action', 'listSetting'], function(data) {
     if (data.theme) {
       themeStylesheet.href = data.theme;
       themeSelect.value = data.theme;
@@ -22,6 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     if (data.action) {
       actionSelect.value = data.action;
+    }
+    if(data.listSetting){
+      listSelect.value = data.listSetting;
     }
   });
 
@@ -41,10 +46,20 @@ document.addEventListener('DOMContentLoaded', function() {
       const selectedAction = actionSelect.value;
       chrome.storage.local.set({ action: selectedAction });
     });
-  
-    // Navigate back to the main page
-    backButton.addEventListener('click', function() {
-      window.location.href = 'index.html'; 
+
+    // Save the selected list when the user selects a new option
+    listSelect.addEventListener('change', function() {
+      const selectedList = listSelect.value;
+      chrome.storage.local.set({ listSetting: selectedList });
     });
+  
+  
+
+    function addLinkStyling(){
+      link.classList.add('active');
+    }
+  
+    addLinkStyling();
+
   });
 

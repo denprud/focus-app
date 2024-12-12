@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const noTabsMessage = document.getElementById('no-tabs-message');
   const themeStylesheet = document.getElementById('theme-stylesheet');
   const logoImage = document.getElementById('logo-image');
+  const link = document.getElementById('focus');
 
   // Function to save the current tab list to Chrome storage
   function saveList() {
@@ -110,6 +111,23 @@ document.addEventListener('DOMContentLoaded', function() {
       const focusSession = !data.focusSession; // Toggle the state
       chrome.storage.local.set({ focusSession: focusSession }, function() {
         startButton.textContent = focusSession ? 'End Session' : 'Start Session';
+
+        chrome.storage.local.get('pomodoroActive', function(data) {
+          console.log(data);
+          if (data.pomodoroActive){
+            chrome.storage.local.set({ pomodoroActive: false });
+            // Show a notification when the focus session ends
+            chrome.notifications.create({
+              type: 'basic',
+              iconUrl: 'img/alert_128.png',
+              title: 'Pomodoro Timer',
+              message: 'Pomodoro session ended due to new session!'
+            });
+          }
+        });
+
+        // Set a value in chrome.storage to communicate with pomodoro.js
+        chrome.storage.local.set({ resetFocusSession: true });
       });
     });
   });
@@ -127,11 +145,33 @@ document.addEventListener('DOMContentLoaded', function() {
     const focusSession = false;
     chrome.storage.local.set({ tabList: [], focusSession: false });
     startButton.textContent = focusSession ? 'End Session' : 'Start Session';
-    toggleNoTabsMessage(); // Toggle the message visibility
+    toggleNoTabsMessage(); // Toggle the no-tab message visibility
+
+
+    chrome.storage.local.get('pomodoroActive', function(data) {
+      console.log(data);
+      if (data.pomodoroActive){
+        chrome.storage.local.set({ pomodoroActive: false });
+        // Show a notification when the focus session ends
+        chrome.notifications.create({
+          type: 'basic',
+          iconUrl: 'img/alert_128.png',
+          title: 'Pomodoro Timer',
+          message: 'Pomodoro session ended due to new session!'
+        });
+      }
+    });
+
+    // Set a value in chrome.storage to communicate with pomodoro.js
+    chrome.storage.local.set({ resetFocusSession: true });
+    console.log('Resetting focus session');
   });
 
-  document.getElementById('settings-button').addEventListener('click', function() {
-    window.location.href = 'settings.html';
-  });
+  function addLinkStyling(){
+    link.classList.add('active');
+  }
+
+  addLinkStyling();
+
   
 });

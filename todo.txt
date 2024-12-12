@@ -1,5 +1,5 @@
-add refresh to added and deleted tabs
+help website page
 
-add option if you want your current tab to prohibit change or not
+when the pomodoro timer is active, the focus session state shoudl also be active, 
+thus allowing the start session button to display 'end session'
 
-add pomodoro timer

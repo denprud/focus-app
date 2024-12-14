@@ -15,25 +15,34 @@
       <li><a href="settings.html" class="nav-link" id="settings">Settings</a></li>
     </ul>
   </nav>
-
-  <h1>Settings</h1>
-  <p>Here you can configure your settings.</p>
-  <label for="theme-select">Choose a theme:</label>
-  <select id="theme-select">
-    <option value="css-files/sketch.css">Sketch Theme</option>
-    <option value="css-files/ariel.css">Ariel Theme</option>
-  </select>
+  <h1 id="setting-header">Settings</h1>
+  
+  <div class="setting-select">
+    <label for="theme-select">Choose a theme:</label>
+    <select id="theme-select">
+      <option value="css-files/sketch.css">Sketch Theme</option>
+      <option value="css-files/ariel.css">Ariel Theme</option>
+    </select>
+  </div>
   <br>
-  <label for="action-select">Choose an action:</label>
-  <select id="action-select">
-    <option value="change-dom">Change DOM Content</option>
-    <option value="show-alert">Show Alert</option>
-  </select>
-  <label for="list-select">Choose a List Setting</label>
-  <select id="list-select">
-    <option value="allow-list">Allow List</option>
-    <option value="blocked-list">Blocked List</option>
-  </select>
+
+  <div class="setting-select">
+    <label for="action-select">Choose an action:</label>
+    <select id="action-select">
+      <option value="change-dom">Change DOM Content</option>
+      <option value="show-alert">Show Alert</option>
+    </select>
+  </div>
+  <br>
+
+  <div class="setting-select">
+    <label for="list-select">Choose a list setting</label>
+    <select id="list-select">
+      <option value="allow-list">Allow List</option>
+      <option value="blocked-list">Blocked List</option>
+    </select>
+  </div>
+  
   
   <script src="settings.js"></script>
 </body>
